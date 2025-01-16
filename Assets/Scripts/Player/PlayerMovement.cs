@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping;
     private Rigidbody2D rb;
 
+    private Animator anim;
+
     private float dashTimer;
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         dashing = false;
         dashTimer = 0;
         rb = GetComponent<Rigidbody2D>();
+        anim = transform.GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -72,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
         if ((final.x > 0 && !facingRight) || (final.x < 0 && facingRight))
         {
             facingRight = !facingRight;
+            anim.SetBool("FacingRight", facingRight);
         }
         // Debug.Log(Input.GetAxis("Horizontal"));
         return final;
