@@ -16,10 +16,37 @@ public class PlayerMovement : MonoBehaviour
     private bool dashing;
     private bool isJumping;
     private Rigidbody2D rb;
-
     private Animator anim;
-
     private float dashTimer;
+
+    public bool GetFacing(){return facingRight;}
+    public Vector2 GetVelocity(){return rb.velocity;}
+    public string GetAnimState()
+    {
+        // Debug.Log("hi");
+        string output = "";
+        // Debug.Log(output + "Idle");
+        //Add General state to the string
+        if(!isJumping){output += "Idle";}else
+        if(rb.velocity.y > 0){output += "Airborne";}else{output += "Falling";}
+
+        //Add Direction to the string
+        if(facingRight){output += "Right";}else
+        {output += "Left";}
+
+        // Debug.Log(output);
+        return output;
+    }
+    public void Rewind(Vector2 velo, Vector3 pos, bool facing, string animState)
+    {
+        rb.velocity = velo;
+        transform.position = pos;
+        facingRight = facing;
+        anim.Play(animState);
+        dashing = true;
+        dashTimer = 0.5f;
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isJumping){anim.SetFloat("VerticalSpeed", rb.velocity.y);}
+        // Debug.Log(facingRight);
         if(!dashing)
         {
             ProcessMove();
@@ -64,6 +93,8 @@ public class PlayerMovement : MonoBehaviour
         if (!isJumping && Input.GetAxis("Vertical") > 0)
         {
             isJumping = true;
+            anim.SetBool("Grounded", !isJumping);
+            if(facingRight){anim.Play("JumpingRight");}else{anim.Play("JumpingLeft");}
             // Debug.Log(Input.GetAxis("Vertical"));
             rb.velocity = new Vector2(rb.velocity.x, jumpStrength);
             // rb.AddForce(dashStrength * Vector2.up, ForceMode2D.Impulse);
@@ -72,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 RunningInput()
     {
         Vector2 final = new Vector2(Input.GetAxis("Horizontal"), 0);
+        anim.SetFloat("HorizontalInput", Input.GetAxis("Horizontal"));
         if ((final.x > 0 && !facingRight) || (final.x < 0 && facingRight))
         {
             facingRight = !facingRight;
@@ -91,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.layer == 14 && rb.velocity.y < 1)
         {
             isJumping = false;
+            anim.SetBool("Grounded", !isJumping);
         }
     }
 }
