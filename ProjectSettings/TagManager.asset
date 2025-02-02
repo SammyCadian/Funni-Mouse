@@ -15,10 +15,10 @@ TagManager:
   - 
   - 
   - Player
+  - PlayerAttack
   - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Harmful
   - Ground
   - 
   - 

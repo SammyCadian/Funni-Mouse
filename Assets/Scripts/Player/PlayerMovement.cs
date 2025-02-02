@@ -13,19 +13,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private KeyCode dashKey;
 
     private bool facingRight;
-    private bool dashing;
+    private bool pauseInput;
     private bool isJumping;
+    private bool rewinding;
     private Rigidbody2D rb;
     private Animator anim;
-    private float dashTimer;
+    private float pauseInputTimer;
 
+    public bool IsRewinding(){return rewinding;}
     public bool GetFacing(){return facingRight;}
     public Vector2 GetVelocity(){return rb.velocity;}
     public string GetAnimState()
     {
-        // Debug.Log("hi");
         string output = "";
-        // Debug.Log(output + "Idle");
+
         //Add General state to the string
         if(!isJumping){output += "Idle";}else
         if(rb.velocity.y > 0){output += "Airborne";}else{output += "Falling";}
@@ -34,17 +35,7 @@ public class PlayerMovement : MonoBehaviour
         if(facingRight){output += "Right";}else
         {output += "Left";}
 
-        // Debug.Log(output);
         return output;
-    }
-    public void Rewind(Vector2 velo, Vector3 pos, bool facing, string animState)
-    {
-        rb.velocity = velo;
-        transform.position = pos;
-        facingRight = facing;
-        anim.Play(animState);
-        dashing = true;
-        dashTimer = 0.5f;
     }
     
     // Start is called before the first frame update
@@ -52,8 +43,8 @@ public class PlayerMovement : MonoBehaviour
     {
         facingRight = true;
         isJumping = false;
-        dashing = false;
-        dashTimer = 0;
+        pauseInput = false;
+        pauseInputTimer = 0;
         rb = GetComponent<Rigidbody2D>();
         anim = transform.GetChild(0).GetComponent<Animator>();
     }
@@ -61,29 +52,63 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isJumping){anim.SetFloat("VerticalSpeed", rb.velocity.y);}
+        anim.SetFloat("VerticalSpeed", rb.velocity.y);
         // Debug.Log(facingRight);
-        if(!dashing)
+        if(!pauseInput)
         {
             ProcessMove();
             JumpingInput();
             DashInput();
-        }else if(dashTimer > 0)
+        }else if(pauseInputTimer > 0)
         {
-            dashTimer -= Time.deltaTime;
+            pauseInputTimer -= Time.deltaTime;
         }else
         {
-            dashing = false;
+            pauseInput = false;
         }
+    }
+    public void PrayingStart(){if(facingRight){anim.Play("PrayStartRight");}else{anim.Play("PrayStartLeft");}}
+    public void PrayingEnd(){if(facingRight){anim.Play("IdleLeft");}else{anim.Play("IdleRight");}}
+    public void PrayingContinue(){pauseInputTimer = 0.2f; pauseInput = true;}
+    public void RewindOneNode(PlayerEcho l)
+    {
+        // rb.velocity = l.GetVelocity();
+        transform.position = l.transform.position;
+        facingRight = l.GetFacing();
+        string stateAtNode = l.GetState();
+        // Debug.Log(stateAtNode);
+        anim.Play(stateAtNode);
+    }
+    public void RewindFinal(PlayerEcho l)
+    {
+        rb.velocity = l.GetVelocity();
+        transform.position = l.transform.position;
+        facingRight = l.GetFacing();
+        anim.Play(l.GetState());
+        EndRewind();
+    }
+    public void StartRewind()
+    {
+        rewinding = true;
+        pauseInputTimer = 5 * 0.1f + 0.5f;
+        pauseInput = true;
+        rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
+    }
+    public void EndRewind()
+    {
+        rewinding = false;
+        // pauseInput = false;
+        rb.isKinematic = false;
     }
     private void DashInput()
     {
         if (Input.GetKeyDown(dashKey))
         {
-            // Debug.Log("pop");
+            // Debug.Log("pop");s
             float dir = 1;
-            dashing = true;
-            dashTimer = 0.15f;
+            pauseInput = true;
+            pauseInputTimer = 0.15f;
             if(facingRight){dir = 1;}else{dir = -1;}
             rb.AddForce(dashStrength * 10f * dir * Vector2.right, ForceMode2D.Impulse);
         }
