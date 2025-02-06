@@ -1262,8 +1262,12 @@ MonoBehaviour:
   debrisLeftKey: 106
   debrisMiddleKey: 107
   debrisRightKey: 108
+  punchLeftKey: 111
+  punchRightKey: 112
+  playerRef: {fileID: 1103375651}
   laserEyes: {fileID: 2645518274818013888, guid: 9f848256ac7e0b0469e46fa3997af8a6, type: 3}
   debrisSpawner: {fileID: 2964395199152796997, guid: 31e1354eb23784549b20f685108fe7ab, type: 3}
+  fist: {fileID: 443864646103342277, guid: 5e3e06e3ffbfb1f4cb8f08fdb4654d05, type: 3}
 --- !u!1 &1103375649
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,7 +1876,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Retry
+  m_text: Reload
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2064,7 +2068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcaf43f4f3314e4bb93b11c51aa1707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseKey: 27
+  returnKey: 27
   ouchUI: {fileID: 205975885}
 --- !u!1001 &2947836413178210361
 PrefabInstance:

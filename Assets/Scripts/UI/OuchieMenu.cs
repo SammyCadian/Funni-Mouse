@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class OuchieMenu : MonoBehaviour
 {
-    [SerializeField] private KeyCode pauseKey;
+    [SerializeField] private KeyCode returnKey;
     public GameObject ouchUI;
     public static bool GameIsPaused = false;
     // Start is called before the first frame update
@@ -17,7 +17,10 @@ public class OuchieMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(returnKey))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void Resume()
