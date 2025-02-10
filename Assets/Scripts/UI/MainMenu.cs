@@ -13,4 +13,8 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("TrainingRoom");
     }
+    public void EndGame()
+    {
+        Application.Quit();
+    }
 }
