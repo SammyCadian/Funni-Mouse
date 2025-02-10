@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class AIBoss : MonoBehaviour
 {
-    [SerializeField] private float attackRateP1;
-    [SerializeField] private float attackRateP2;
-    [SerializeField] private float attackRateP3;
     [SerializeField] private Transform playerRef;
     [SerializeField] private GameObject laserEyes;
     [SerializeField] private GameObject laserEyesAlt;
@@ -18,24 +15,31 @@ public class AIBoss : MonoBehaviour
     private float lasertimer;
     private float debrisRate;
     private float debristimer;
+    private bool moving;
+    private float moveTimer, activeMovetimer;
+    private Vector3 left, center, right, targetLocation;
+    private float travelDistance;
     private int phase;
     private BossHealth bh;
-    private float attackTimer;
     // Start is called before the first frame update
     void Start()
     {
+        center = transform.position;
+        left = transform.position + new Vector3(-6, 0, 0);
+        right = transform.position + new Vector3(6, 0, 0);
         fistRate = 3f;
         debrisRate = 5f;
         laserRate = 9f;
         lasertimer = laserRate;
         fisttimer = fistRate;
         debristimer = debrisRate;
-        attackTimer = attackRateP1;
         phase = 1;
         // currentAttackRate = attackRateP1;
         // currentAttackNum = attackNumP1;
         bh = GetComponent<BossHealth>();
         GetComponent<Rigidbody2D>().isKinematic = true;
+        moveTimer = 0f;
+        activeMovetimer = 0f;
     }
 
     // Update is called once per frame
@@ -45,11 +49,34 @@ public class AIBoss : MonoBehaviour
         {
             phase = bh.GetPhase();
             ProcessAttack();
+            if(!moving && moveTimer <= 0)
+            {
+                float x = Random.value;
+                if(x > 0.66f){targetLocation = left;}else if(x > 0.33f){targetLocation = center;}else{targetLocation = right;}
+                travelDistance = targetLocation.x - transform.position.x;
+                activeMovetimer = 1f;
+                moving = true;
+            }else if(moving)
+            {
+                ProcessMove();
+            }
+            moveTimer -= Time.deltaTime;
         }
         // if(attackTimer <= 0){ProcessAttack();}
         // attackTimer -= Time.deltaTime;
     }
-
+    private void ProcessMove()
+    {
+        if(activeMovetimer >= 0)
+        {
+            transform.position += new Vector3(Time.deltaTime * travelDistance, 0, 0);
+        }else
+        {
+            moveTimer = 10f + Random.value * 5f;
+            moving = false;
+        }
+        activeMovetimer -= Time.deltaTime;
+    }
     private void ProcessAttack()
     {
         if(phase > 0 && fisttimer <= 0)
@@ -84,7 +111,7 @@ public class AIBoss : MonoBehaviour
         switch(attac)
         {
             case 0:  
-                if(Random.value > 0.5f){Instantiate(laserEyes);}else{Instantiate(laserEyesAlt);}
+                if(Random.value > 0.5f){Instantiate(laserEyes, transform.position + Vector3.down*0.5f, transform.rotation);}else{Instantiate(laserEyesAlt, transform.position + Vector3.down*0.5f, transform.rotation);}
                 break;
             case 1:
                 int sideB;

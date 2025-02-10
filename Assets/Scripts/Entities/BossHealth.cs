@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossHealth : EnemyHealth
 {
     [SerializeField] private OuchieMenu winUI;
-    private float dyingTimer;
+    private float dyingTimer = 0f;
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -22,13 +22,13 @@ public class BossHealth : EnemyHealth
     }
     private void ProcessDying()
     {
-        Debug.Log(dyingTimer);
         if(dyingTimer > 2f)
         {
             GetComponent<Rigidbody2D>().isKinematic = false;
             dyingTimer -= Time.deltaTime;
         }else
         {
+            dyingTimer = 0f;
             winUI.Pause();
         }
     }

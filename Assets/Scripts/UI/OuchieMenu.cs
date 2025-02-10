@@ -11,6 +11,7 @@ public class OuchieMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Time.timeScale = 1f;
         ouchUI.SetActive(false);
     }
 
@@ -37,12 +38,12 @@ public class OuchieMenu : MonoBehaviour
     }
     public void RestartScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Resume();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void ReturnToMenu()
     {
-        SceneManager.LoadScene("MainMenu");
         Resume();
+        SceneManager.LoadScene("MainMenu");
     }
 }

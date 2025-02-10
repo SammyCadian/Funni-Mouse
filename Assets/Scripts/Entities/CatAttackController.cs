@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CatAttackController : MonoBehaviour
 {
     [SerializeField] private KeyCode laserEyeKey;
+    [SerializeField] private KeyCode laserEyeAltKey;
     [SerializeField] private KeyCode debrisLeftKey;
     [SerializeField] private KeyCode debrisMiddleKey;
     [SerializeField] private KeyCode debrisRightKey;
@@ -13,6 +14,7 @@ public class CatAttackController : MonoBehaviour
     [SerializeField] private KeyCode punchRightKey;
     [SerializeField] private Transform playerRef;
     [SerializeField] private GameObject laserEyes;
+    [SerializeField] private GameObject laserEyesAlt;
     [SerializeField] private GameObject debrisSpawner;
     [SerializeField] private GameObject fist;
     // Start is called before the first frame update
@@ -27,6 +29,10 @@ public class CatAttackController : MonoBehaviour
         if(Input.GetKeyDown(laserEyeKey))
         {
             Instantiate(laserEyes);
+        }
+        if(Input.GetKeyDown(laserEyeAltKey))
+        {
+            Instantiate(laserEyesAlt);
         }
         if(Input.GetKeyDown(debrisLeftKey))
         {
