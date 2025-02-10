@@ -3,5 +3,5 @@
 ## Instalation/Setup
  Just download the files off Github or the following itch.io: page https://sammycadian.itch.io/rgb-rat-vs-the-cat
 ## Credits: 
-   Developed by Sam Yu
+   Developed by Sam Yu \n
    Picture of a cat taken by Annabelle Salameh
