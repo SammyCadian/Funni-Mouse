@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060ea4342b5292d4a8fb785fc28a8d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 1000
   hitColor: {r: 1, g: 0.39215687, b: 0.39215687, a: 1}
   healthbar: {fileID: 619339171}
   winUI: {fileID: 620871161}
@@ -730,9 +730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0acf4ef0308ecea49816c78a97721b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRateP1: 5
-  attackRateP2: 1
-  attackRateP3: 0.5
   playerRef: {fileID: 1103375651}
   laserEyes: {fileID: 2645518274818013888, guid: 9f848256ac7e0b0469e46fa3997af8a6, type: 3}
   laserEyesAlt: {fileID: 2645518274818013888, guid: 54879fde9721a084fb95c97608e0cc63, type: 3}
