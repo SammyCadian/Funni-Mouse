@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-
+        SceneManager.LoadScene("Fight");
     }
     public void EnterTraining()
     {

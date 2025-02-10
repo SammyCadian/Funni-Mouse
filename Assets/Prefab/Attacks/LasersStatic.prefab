@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5567189943322289818}
-  - component: {fileID: 5432879273523135503}
+  - component: {fileID: 1315970473993250724}
   m_Layer: 0
   m_Name: LaserLeft
   m_TagString: Untagged
@@ -25,15 +25,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698006097183173956}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0.043619405, w: 0.9990483}
   m_LocalPosition: {x: -2, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 71673223862935171}
   m_Father: {fileID: 7671266185112064992}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!114 &5432879273523135503
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
+--- !u!114 &1315970473993250724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1698006097183173956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00500dd11ac65bd46866640cce02a4d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 58eb876df2b66fc48bdb8dcb0f20e261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   laserTime: 1
   laserDelay: 2
-  startRight: 0
   warningColor: {r: 1, g: 0, b: 0, a: 0.29411766}
 --- !u!1 &2645518274818013888
 GameObject:
@@ -59,7 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7671266185112064992}
   m_Layer: 0
-  m_Name: Lasers
+  m_Name: LasersStatic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8669063565455563185}
-  - component: {fileID: 838430583766894579}
+  - component: {fileID: 9033883696189798508}
   m_Layer: 0
   m_Name: LaserRight
   m_TagString: Untagged
@@ -107,15 +106,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2850733327791240757}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: -0.043619405, w: 0.9990483}
   m_LocalPosition: {x: 2, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6381837333473733901}
   m_Father: {fileID: 7671266185112064992}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!114 &838430583766894579
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5}
+--- !u!114 &9033883696189798508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,12 +123,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2850733327791240757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00500dd11ac65bd46866640cce02a4d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 58eb876df2b66fc48bdb8dcb0f20e261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   laserTime: 1
   laserDelay: 2
-  startRight: 1
   warningColor: {r: 1, g: 0, b: 0, a: 0.29411766}
 --- !u!1 &3626941395122586419
 GameObject:
@@ -160,7 +158,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -10, z: 0}
-  m_LocalScale: {x: 1, y: 20, z: 1}
+  m_LocalScale: {x: 2, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5567189943322289818}
@@ -303,7 +301,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -10, z: 0}
-  m_LocalScale: {x: 1, y: 20, z: 1}
+  m_LocalScale: {x: 2, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8669063565455563185}

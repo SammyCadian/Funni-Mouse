@@ -18,6 +18,7 @@ public class EnemyFist : MonoBehaviour
     {
         GetComponentInChildren<BoxCollider2D>().enabled = false;
         startPos = transform.position;
+        punchPos = transform.position + Vector3.up * 8;
         distancePerSecond = (punchPos - transform.position)/raiseTime;
         existanceTimer = 0f;
         totalTime = raiseTime + 1f + 2f;

@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class LaserRotation : MonoBehaviour
+public class LaserStatic : MonoBehaviour
 {
     [SerializeField] private float laserTime;
     [SerializeField] private float laserDelay;
-    [SerializeField] private bool startRight;
     [SerializeField] Color warningColor;
     private float existanceTimer;
-    private float turnRate;
     private Color Defaultcolor;
     // Start is called before the first frame update
     void Start()
@@ -19,8 +16,6 @@ public class LaserRotation : MonoBehaviour
         Defaultcolor = transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = warningColor;
         existanceTimer = laserTime + laserDelay;
-        turnRate = 90f/laserTime;
-        if(startRight){turnRate *= -1;}
     }
 
     // Update is called once per frame
@@ -28,7 +23,7 @@ public class LaserRotation : MonoBehaviour
     {
         if(existanceTimer > 0)
         {
-            if(existanceTimer <= laserTime){transform.GetChild(0).GetComponent<SpriteRenderer>().color = Defaultcolor; transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true; transform.Rotate(0,0,turnRate * Time.deltaTime);}
+            if(existanceTimer <= laserTime){transform.GetChild(0).GetComponent<SpriteRenderer>().color = Defaultcolor; transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;}
             existanceTimer -= Time.deltaTime;
         }else
         {

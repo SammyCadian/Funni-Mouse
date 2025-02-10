@@ -4,17 +4,6 @@ using UnityEngine;
 
 public class CubeOfHarm : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     // private void OnCollisionEnter2D(Collision2D other) {
     //     if(other.gameObject.layer == 9)
     //     {
@@ -27,4 +16,5 @@ public class CubeOfHarm : MonoBehaviour
             other.gameObject.GetComponent<PlayerHealth>().GetHit();
         }
     }
+    public void ExistanceCheck(){Debug.Log("yo, cube here");}
 }
